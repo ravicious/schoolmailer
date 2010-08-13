@@ -1,10 +1,11 @@
-%w(haml digest dm-core dm-validations dm-timestamps dm-migrations rack-flash lib/mailer lib/smtp-tls lib/config_file).each {|lib| require lib}
+%w(haml digest dm-core dm-validations dm-timestamps dm-migrations rack-flash lib/mailer lib/smtp-tls lib/config_file lib/url_for).each {|lib| require lib}
 
 class Schoolmailer < Sinatra::Base
 
   enable :sessions
   use Rack::Flash
   register Sinatra::ConfigFile
+  helpers Sinatra::UrlForHelper
 
   # Conf
   
@@ -51,7 +52,7 @@ class Schoolmailer < Sinatra::Base
       flash[:error] = "Podany email już istnieje w bazie lub jest nieprawidłowy."
     end
 
-    redirect '/'
+    redirect url_for('/')
 
   end
 

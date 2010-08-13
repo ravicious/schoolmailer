@@ -1,0 +1,25 @@
+- [:error, :notice].each do |flash_sym|
+  - if flash[flash_sym]
+    %div{:id => "flash_#{flash_sym.to_s}"}
+      = flash[flash_sym]
+      %hr
+
+%div
+  %p Aktywowane maile:
+  %ul
+    - for email in @emails.activated
+      %li
+        = email.address
+%div
+  %p Nieaktywowane maile:
+  %ul
+    - for email in @emails.unactivated
+      %li
+        = email.address
+
+%form{:action => '/emails', :method => 'post', :name => 'email'}
+  %label
+    Email
+    %input{:type => 'text', :name => 'email[address]'}
+
+  %input{:type => 'submit', :value => '→'}

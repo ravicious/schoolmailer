@@ -7,6 +7,8 @@ class Schoolmailer < Sinatra::Base
   register Sinatra::ConfigFile
   helpers Sinatra::UrlForHelper
 
+  set :environment, (ENV['RACK_ENV'] || 'development')
+
   # Conf
   
   configure do
@@ -24,7 +26,13 @@ class Schoolmailer < Sinatra::Base
   require "models/email"
   
   DataMapper.finalize
-  DataMapper.auto_upgrade!
+
+  # Czyść bazę przy każdym uruchomieniu w środowisku testowym
+  if environment == 'test'
+    DataMapper.auto_migrate!
+  else
+    DataMapper.auto_upgrade!
+  end
 
   # Mailer
   

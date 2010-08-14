@@ -1,3 +1,6 @@
+require "bundler"
+Bundler.setup(:default, :sinatra, :test)
+
 require File.join(File.dirname(__FILE__), '..', '..', 'schoolmailer')
 %w(capybara capybara/cucumber spec).each {|lib| require lib}
 

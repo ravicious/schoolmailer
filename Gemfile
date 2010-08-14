@@ -13,3 +13,9 @@ group :sinatra do
   gem "activesupport"
   gem "rack-flash"
 end
+
+group :test do
+  gem "cucumber"
+  gem "capybara"
+  gem "rspec", :require => 'spec'
+end

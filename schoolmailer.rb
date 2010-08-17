@@ -10,6 +10,13 @@ class Schoolmailer < Sinatra::Base
 
   set :environment, (ENV['RACK_ENV'] || 'development')
 
+  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/schoolmailer_#{environment}.sqlite3")
+
+  # Models
+  require "models/email"
+
+  DataMapper.finalize
+
   # Conf
   
   configure do
@@ -32,13 +39,6 @@ class Schoolmailer < Sinatra::Base
     # Czyść bazę przy każdym uruchomieniu w środowisku testowym
     DataMapper.auto_migrate!
   end
-
-  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/schoolmailer_#{environment}.sqlite3")
-
-  # Models
-  require "models/email"
-  
-  DataMapper.finalize
 
   # Mailer
   

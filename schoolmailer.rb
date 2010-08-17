@@ -15,24 +15,25 @@ class Schoolmailer < Sinatra::Base
     config_file "conf/settings.yml", "conf/#{environment}.settings.yml"
   end
 
+  configure :production, :development do
+    DataMapper.auto_upgrade!
+  end
+
   configure :development do
     DataMapper::Logger.new($stdout, :debug)
   end
 
-  # DataMapper
+  configure :test do
+    # Czyść bazę przy każdym uruchomieniu w środowisku testowym
+    DataMapper.auto_migrate!
+  end
+
   DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/schoolmailer_#{environment}.sqlite3")
 
   # Models
   require "models/email"
   
   DataMapper.finalize
-
-  # Czyść bazę przy każdym uruchomieniu w środowisku testowym
-  if environment == 'test'
-    DataMapper.auto_migrate!
-  else
-    DataMapper.auto_upgrade!
-  end
 
   # Mailer
   

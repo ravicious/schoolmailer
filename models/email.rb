@@ -2,7 +2,7 @@ class Email
   include DataMapper::Resource
 
   property :address, String, :key => true, :format => :email_address
-  property :confirmation_hash, String, :accessor => :protected
+  property :confirmation_hash, String, :writer => :protected
   property :confirmed, Boolean, :default => false, :writer => :protected
 
   before :create, :generate_confirmation_hash

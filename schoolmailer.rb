@@ -5,6 +5,7 @@ class Schoolmailer < Sinatra::Base
   enable :sessions
   use Rack::Flash
   register Sinatra::ConfigFile
+  helpers Sinatra::Mailer
   helpers Sinatra::UrlForHelper
 
   set :environment, (ENV['RACK_ENV'] || 'development')
@@ -37,13 +38,8 @@ class Schoolmailer < Sinatra::Base
 
   # Mailer
   
-  Sinatra::Mailer.config = {
-    :host => 'smtp.sendgrid.net',
-    :port => '587',
-    :user => sendgrid_user,
-    :pass => sendgrid_pass,
-    :auth => :plain
-  }
+  Sinatra::Mailer.config = {:sendmail_path => sendmail_path}
+  Sinatra::Mailer.delivery_method = :sendmail
 
   # Routes
 
@@ -57,6 +53,23 @@ class Schoolmailer < Sinatra::Base
 
     if @email.save
       flash[:notice] = "Mail dodany do bazy! Instrukcje dotyczące aktywacji właśnie wylądowały w Twojej skrzynce."
+
+      msgbody = <<EOF
+Cześć,\n
+\n
+Aby aktywować konto, kliknij na poniższy link.\n
+\n
+#{url_for("/emails/activation/#{@email.address}/#{@email.confirmation_hash}", :full)}\n
+\n
+----------------------------------------------\n
+Jeśli ten email to pomyłka, po prostu go zignoruj.
+EOF
+      email :to => "ravicious@gmail.com",
+            :from => "ravicious@gmail.com",
+            :subject => "Aktywacja konta",
+            #:body => haml(:mail_activation)
+            :text => msgbody
+
     else
       flash[:error] = "Podany email już istnieje w bazie lub jest nieprawidłowy."
     end

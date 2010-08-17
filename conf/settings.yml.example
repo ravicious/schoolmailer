@@ -1,3 +1,2 @@
 ---
-sendgrid_user: 
-sendgrid_pass: 
+sendmail_path: /usr/sbin/sendmail -i

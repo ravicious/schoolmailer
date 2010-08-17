@@ -18,7 +18,7 @@ World do
 
 end
 
-Before('@count-mails') do
+Before('@fetch-mails') do
   begin
     @received_mails = Dir.new('/tmp/fake-mailer').entries
   rescue

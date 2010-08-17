@@ -3,7 +3,7 @@ Feature: Subscribing to newsletter
   As a guest
   I want to manage my subscription
 
-  @count-mails
+  @fetch-mails
   Scenario: Submitting email successfully
     Given I am on the homepage
     When I fill in "email" with "test@test.com"

@@ -1,2 +1,4 @@
 ---
 sendmail_path: /usr/sbin/sendmail -i
+mysql_login: 
+mysql_pass: 

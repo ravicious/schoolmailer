@@ -11,6 +11,7 @@ class Schoolmailer < Sinatra::Base
   set :environment, (ENV['RACK_ENV'] || 'development')
 
   DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/schoolmailer_#{environment}.sqlite3")
+  #DataMapper.setup(:default, "mysql://#{mysql_login}:#{mysql_pass}@localhost/schoolmailer_#{environment}")
 
   # Models
   require "models/email"

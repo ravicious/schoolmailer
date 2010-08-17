@@ -5,6 +5,7 @@ gem "dm-validations", "1.0.0"
 gem "dm-timestamps", "1.0.0"
 gem "dm-migrations", "1.0.0"
 gem "dm-sqlite-adapter", "1.0.0"
+#gem "dm-mysql-adapter", "1.0.0"
 
 group :sinatra do
   gem "sinatra"

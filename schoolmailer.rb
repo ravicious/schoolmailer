@@ -24,6 +24,10 @@ class Schoolmailer < Sinatra::Base
     DataMapper::Logger.new($stdout, :debug)
   end
 
+  configure :development, :test do
+    set :sendmail_path, "#{Dir.pwd}/lib/fake-mailer"
+  end
+
   configure :test do
     # Czyść bazę przy każdym uruchomieniu w środowisku testowym
     DataMapper.auto_migrate!
@@ -64,7 +68,7 @@ Aby aktywować konto, kliknij na poniższy link.\n
 ----------------------------------------------\n
 Jeśli ten email to pomyłka, po prostu go zignoruj.
 EOF
-      email :to => "ravicious@gmail.com",
+      email :to => @email.address,
             :from => "ravicious@gmail.com",
             :subject => "Aktywacja konta",
             #:body => haml(:mail_activation)

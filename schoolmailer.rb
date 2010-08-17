@@ -75,7 +75,15 @@ EOF
             :text => msgbody
 
     else
-      flash[:error] = "Podany email już istnieje w bazie lub jest nieprawidłowy."
+
+      # Nie chce mi się bawić w tłumaczenie error messages
+      case @email.errors.on(:address).first
+      when /already taken/
+        flash[:error] = "Podany email już istnieje w bazie!"
+      when /invalid format/
+        flash[:error] = "Podany email jest nieprawidłowy!"
+      end
+
     end
 
     redirect url_for('/')

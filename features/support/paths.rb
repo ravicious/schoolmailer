@@ -10,6 +10,12 @@ module NavigationHelpers
     
     when /the home\s?page/
       '/'
+
+    when /confirmation page with wrong email/
+      "/emails/confirm/#{rand(42)}/blahblahblah"
+
+    when /confirmation page with wrong confirmation hash/
+      '/emails/confirm/wrong@confirmation.hsh/42'
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

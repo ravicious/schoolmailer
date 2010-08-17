@@ -17,11 +17,3 @@ World do
   Capybara.app = Schoolmailer
 
 end
-
-Before('@fetch-mails') do
-  begin
-    @received_mails = Dir.new('/tmp/fake-mailer').entries
-  rescue
-    @received_mails = ['..', '.']
-  end
-end

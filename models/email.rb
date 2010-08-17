@@ -16,6 +16,16 @@ class Email
     all(:confirmed => false)
   end
 
+  def confirm(submitted_hash)
+    # !confirmed - nie aktywuj maila, jeśli jest już on aktywowany
+    if (submitted_hash == confirmation_hash and !confirmed)
+      attribute_set(:confirmed, true)
+      save
+    else
+      false
+    end
+  end
+
   private
 
   def generate_confirmation_hash

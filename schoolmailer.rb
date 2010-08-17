@@ -64,7 +64,7 @@ Cześć,\n
 \n
 Aby aktywować konto, kliknij na poniższy link.\n
 \n
-#{url_for("/emails/activation/#{@email.address}/#{@email.confirmation_hash}", :full)}\n
+#{url_for("/emails/confirm/#{@email.address}/#{@email.confirmation_hash}", :full)}\n
 \n
 ----------------------------------------------\n
 Jeśli ten email to pomyłka, po prostu go zignoruj.
@@ -88,6 +88,26 @@ EOF
     end
 
     redirect url_for('/')
+
+  end
+
+  get '/emails/confirm/:email/:confirmation_hash' do
+
+    begin
+      @email = Email.get!(params[:email])
+
+      if @email.confirm(params[:confirmation_hash])
+        flash[:notice] = "Email został aktywowany."
+      else
+        flash[:error] = "Klucz aktywujący nie pasuje do Twojego maila. Być może Twoje konto jest już aktywne."
+      end
+
+    rescue DataMapper::ObjectNotFoundError
+      flash[:error] = "Ups, nie mamy w bazie takiego maila!"
+
+    ensure
+      redirect url_for('/')
+    end
 
   end
 

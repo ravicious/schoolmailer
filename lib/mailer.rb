@@ -40,10 +40,10 @@ module Sinatra
     end
     
     def email(mail_options={})
-      Email.new(mail_options).deliver!
+      SendEmail.new(mail_options).deliver!
     end
 
-    class Email
+    class SendEmail
       attr_accessor :mail, :config
 
       # Sends the mail using sendmail.

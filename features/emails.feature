@@ -15,9 +15,9 @@ Feature: Subscribing to newsletter
     Given I am on the homepage
     When I fill in "email" with "omg"
       And I press "→"
-    Then I should see "Podany email już istnieje w bazie lub jest nieprawidłowy."
+    Then I should see "Podany email jest nieprawidłowy!"
     When I fill in "email" with "mike@test.com"
       And I press "→"
       And I fill in "email" with "mike@test.com"
       And I press "→"
-    Then I should see "Podany email już istnieje w bazie lub jest nieprawidłowy."
+    Then I should see "Podany email już istnieje w bazie!"

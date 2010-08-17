@@ -1,3 +1,4 @@
 Then /I should receive activation email/ do
-  @files_count.should_not eql(Dir.new('/tmp/fake-mailer').entries.size)
+  activation_mail = (Dir.new('/tmp/fake-mailer').entries - @received_mails).first
+  File.read("/tmp/fake-mailer/#{activation_mail}").should match(/Aktywacja_konta/)
 end

@@ -20,8 +20,8 @@ end
 
 Before('@count-mails') do
   begin
-    @files_count = Dir.new('/tmp/fake-mailer').entries.size
+    @received_mails = Dir.new('/tmp/fake-mailer').entries
   rescue
-    @files_count = 2
+    @received_mails = ['..', '.']
   end
 end

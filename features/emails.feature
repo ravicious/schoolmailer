@@ -3,11 +3,13 @@ Feature: Subscribing to newsletter
   As a guest
   I want to manage my subscription
 
+  @count-mails
   Scenario: Submitting email successfully
     Given I am on the homepage
     When I fill in "email" with "test@test.com"
       And I press "→"
     Then I should see "Mail dodany do bazy! Instrukcje dotyczące aktywacji właśnie wylądowały w Twojej skrzynce."
+      And I should receive activation email
 
   Scenario: Submitting email unsuccessfully
     Given I am on the homepage

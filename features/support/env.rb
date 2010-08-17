@@ -17,3 +17,11 @@ World do
   Capybara.app = Schoolmailer
 
 end
+
+Before('@count-mails') do
+  begin
+    @files_count = Dir.new('/tmp/fake-mailer').entries.size
+  rescue
+    @files_count = 2
+  end
+end

@@ -14,8 +14,14 @@ module NavigationHelpers
     when /confirmation page with wrong email/
       "/emails/confirm/#{rand(42)}/blahblahblah"
 
+    when /unsubscribe page with wrong email/
+      "/emails/unsubscribe/#{rand(42)}/blahblahblah"
+
     when /confirmation page with wrong confirmation hash/
       '/emails/confirm/wrong@confirmation.hsh/42'
+
+    when /unsubscribe page with wrong confirmation hash/
+      '/emails/unsubscribe/wrong@unsubscribe.com/42'
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -25,6 +25,7 @@ Feature: Subscribing to newsletter
     Given I have submitted email "tester@test.com"
     When I open the confirmation link
     Then I should see "Email został aktywowany."
+      And I should receive email that confirms activation
 
   Scenario: Trying to confirm an email twice
     Given I have submitted email "twice@test.com"
@@ -41,4 +42,24 @@ Feature: Subscribing to newsletter
       And I fill in "email" with "wrong@confirmation.hsh"
       And I press "→"
       And I go to confirmation page with wrong confirmation hash
+    Then I should see "Klucz aktywujący nie pasuje do Twojego maila."
+
+  Scenario: Unsubscribing email successfully
+    Given I have confirmed email "sth@sth.pl"
+    When I open the unsubscribe link
+    Then I should see "Twoja subskrypcja została anulowana."
+
+  Scenario: Trying to unsubscribe an email twice
+    Given I have confirmed email "twiceunsubscribe@sth.pl"
+    When I open the unsubscribe link
+    Then I should see "Twoja subskrypcja została anulowana."
+    When I open the unsubscribe link
+    Then I should see "Być może Twoje konto jest już nieaktywne."
+
+  Scenario: Unsubscribing email unsuccessfully
+    Given I am on the homepage
+    When I go to unsubscribe page with wrong email
+    Then I should see "Ups, nie mamy w bazie takiego maila!"
+    Given I have confirmed email "wrong@unsubscribe.com"
+    When I go to unsubscribe page with wrong confirmation hash
     Then I should see "Klucz aktywujący nie pasuje do Twojego maila."

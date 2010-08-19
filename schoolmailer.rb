@@ -72,7 +72,6 @@ EOF
       email :to => @email.address,
             :from => "ravicious@gmail.com",
             :subject => "Aktywacja konta",
-            #:body => haml(:mail_activation)
             :text => msgbody
 
     else
@@ -98,8 +97,40 @@ EOF
 
       if @email.confirm(params[:confirmation_hash])
         flash[:notice] = "Email został aktywowany."
+        msgbody = <<EOF
+Hej,\n
+\n
+Twoje konto właśnie zostało aktywowane. Gdybyś jednak w przyszłości chciał/a zrezygnować z subskrypcji, po prostu wejdź pod poniższy adres.\n
+\n
+#{url_for("/emails/unsubscribe/#{@email.address}/#{@email.confirmation_hash}", :full)}
+EOF
+        email :to => @email.address,
+              :from => "ravicious@gmail.com",
+              :subject => "Aktywacja konta powiodła się!",
+              :text => msgbody
+
       else
         flash[:error] = "Klucz aktywujący nie pasuje do Twojego maila. Być może Twoje konto jest już aktywne."
+      end
+
+    rescue DataMapper::ObjectNotFoundError
+      flash[:error] = "Ups, nie mamy w bazie takiego maila!"
+
+    ensure
+      redirect url_for('/')
+    end
+
+  end
+
+  get '/emails/unsubscribe/:email/:confirmation_hash' do
+
+    begin
+      @email = Email.get!(params[:email])
+
+      if @email.unsubscribe(params[:confirmation_hash])
+        flash[:notice] = "Twoja subskrypcja została anulowana."
+      else
+        flash[:error] = "Klucz aktywujący nie pasuje do Twojego maila. Być może Twoje konto jest już nieaktywne."
       end
 
     rescue DataMapper::ObjectNotFoundError

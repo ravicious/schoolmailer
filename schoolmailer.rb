@@ -130,7 +130,7 @@ EOF
       if @email.unsubscribe(params[:confirmation_hash])
         flash[:notice] = "Twoja subskrypcja została anulowana."
       else
-        flash[:error] = "Klucz aktywujący nie pasuje do Twojego maila. Być może Twoje konto jest już nieaktywne."
+        flash[:error] = "Klucz aktywujący nie pasuje do Twojego maila."
       end
 
     rescue DataMapper::ObjectNotFoundError

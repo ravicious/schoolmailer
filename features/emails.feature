@@ -54,7 +54,7 @@ Feature: Subscribing to newsletter
     When I open the unsubscribe link
     Then I should see "Twoja subskrypcja została anulowana."
     When I open the unsubscribe link
-    Then I should see "Być może Twoje konto jest już nieaktywne."
+    Then I should see "Ups, nie mamy w bazie takiego maila!"
 
   Scenario: Unsubscribing email unsuccessfully
     Given I am on the homepage

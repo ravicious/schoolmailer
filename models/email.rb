@@ -29,12 +29,10 @@ class Email
   def unsubscribe(submitted_hash)
     # confirmed - nie usuwaj maila z subskrypcji, jeśli jest on już nieaktywny
     if (submitted_hash == confirmation_hash and confirmed)
-      attribute_set(:confirmed, false)
-      save
+      destroy
     else
       false
     end
-
   end
 
   private

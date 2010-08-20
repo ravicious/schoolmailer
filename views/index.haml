@@ -23,7 +23,7 @@
       #paper
       - [:error, :notice].each do |flash_sym|
         - if flash[flash_sym]
-          %div{:id => "flash_#{flash_sym.to_s}"}
+          %div{:id => "flash_#{flash_sym.to_s}", :class => 'flash_message'}
             = flash[flash_sym]
       %p.main-slogan
         Nudzi Cię

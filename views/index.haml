@@ -1,25 +1,48 @@
-- [:error, :notice].each do |flash_sym|
-  - if flash[flash_sym]
-    %div{:id => "flash_#{flash_sym.to_s}"}
-      = flash[flash_sym]
-      %hr
+%html
+  %head
+    %meta{:"http-equiv" => "content-type", :content => "text/html; charset=utf-8"}
+    %title Schoolmailer
+    %link{:rel => "stylesheet", :href => url_for('style.css'), :type => "text/css", :media => "screen", :charset => "utf-8"}
+    :plain
+      <script type="text/javascript" charset="utf-8">
+      /* Usuń text-shadow pod Windowsem */
+      if (navigator.appVersion.indexOf("Win")!=-1)
+        {
+          var headID = document.getElementsByTagName("head")[0];
+          var cssNode = document.createElement('link');
+          cssNode.type = 'text/css';
+          cssNode.rel = 'stylesheet';
+          cssNode.href = 'windows_to_gowno.css';
+          cssNode.media = 'screen';
+          headID.appendChild(cssNode);
+        }
+      </script>
 
-%div
-  %p Aktywowane maile:
-  %ul
-    - for email in @emails.activated
-      %li
-        = email.address
-%div
-  %p Nieaktywowane maile:
-  %ul
-    - for email in @emails.unactivated
-      %li
-        = email.address
+  %body
+    #wrapper
+      #paper
+      - [:error, :notice].each do |flash_sym|
+        - if flash[flash_sym]
+          %div{:id => "flash_#{flash_sym.to_s}"}
+            = flash[flash_sym]
+      %p.main-slogan
+        Nudzi Cię
+        %strong codzienne
+        sprawdzanie dziennika?
+      #infos
+        %p.infotext
+          Nie musisz tam w ogóle wchodzić. Podaj swój adres email, a&nbsp;codziennie po godzinie 16 dostaniesz informacje o&nbsp;<strong>zastępstwach</strong> oraz <strong>wybranym numerku</strong>.
+        %p{:style => "font-size: 20px;"}
+          <strong>Wygodnie</strong>, nieprawdaż?</p>
 
-%form{:action => url_for('/emails'), :method => 'post', :name => 'email'}
-  %label
-    Email
-    %input{:type => 'text', :name => 'email[address]', :id => 'email'}
-
-  %input{:type => 'submit', :value => '→'}
+      %form{:action => url_for('/emails'), :method => 'post', :name => 'email', :id => "mailform"}
+        %p
+          %label{:id => "email-label"}
+            %span Email
+            %input{:type => 'text', :name => 'email[address]', :id => 'email'}
+        %p
+          %input{:type => 'submit', :value => 'Wchodzę w to!'}
+      .clearer
+      %p#footer
+        magic by
+        %a{:href => 'http://ravicio.us'} ravicious

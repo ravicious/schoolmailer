@@ -9,6 +9,8 @@ class Schoolmailer < Sinatra::Base
   helpers Sinatra::UrlForHelper
 
   set :environment, (ENV['RACK_ENV'] || 'development')
+  # Naprawdę nie wiem, dlaczego Sinatra nie korzysta z domyślnych ustawień
+  set :public, File.dirname(__FILE__) + '/public'
 
   DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/schoolmailer_#{environment}.sqlite3")
   #DataMapper.setup(:default, "mysql://#{mysql_login}:#{mysql_pass}@localhost/schoolmailer_#{environment}")

@@ -13,7 +13,6 @@ World do
   include Spec::Expectations
   include Spec::Matchers
 
-  #Capybara.app = Sinatra::Application
   Capybara.app = Schoolmailer
 
 end

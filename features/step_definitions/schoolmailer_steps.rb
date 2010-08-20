@@ -1,7 +1,7 @@
 Given /I have submitted email "([^\"]*)"/ do |email|
   Given "I am on the homepage"
   When "I fill in \"email\" with \"#{email}\""
-  When %q{I press "→"}
+  When %q{I press "Wchodzę w to!"}
   Then "I should receive activation email"
 
   @confirmation_link = File.read("/tmp/fake-mailer/#{@activation_mail}").match(/^(http.+)$/)[0]

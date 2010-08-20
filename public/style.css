@@ -1,0 +1,177 @@
+/* RESET */
+a, abbr, acronym, address, b, big, blockquote, body, caption,
+cite, code, dd, del, dfn, div, dl, dt, em, embed, fieldset,
+figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6,
+html, i, iframe, img, ins, kbd, label, legend, li, object,
+ol, p, pre, q, samp, small, span, strike, strong, sub, sup,
+table, tbody, td, tfoot, th, thead, tr, tt, ul, var {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: inherit;
+  font-style: inherit;
+  vertical-align: baseline;
+}
+
+a, ins, del {
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+caption, th {
+  text-align: left;
+}
+
+q:after, q:before {
+  content: "";
+}
+
+/* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
+@font-face {
+  font-family: 'Museo';
+  src: local('☺'), url('Museo_Slab_500.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Museo';
+  src: local('☺'), url('Museo_Slab_500italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+body {
+  background: #b7b7b7 url('background.png');
+}
+
+#paper {
+  background: no-repeat url('paper-clips.png');
+  height: 754px;
+  width: 669px;
+  margin-top: -175px;
+  margin-left: 350px;
+  position: absolute;
+  z-index: -1;
+}
+
+strong {
+  text-shadow: 0 1px 0 white;
+}
+
+.clearer {
+  clear: both;
+  height: 0;
+}
+
+#wrapper {
+  margin-left: 125px;
+  margin-top: 75px;
+  font-family: "Museo", Georgia, serif;
+  font-size: 20px;
+  color: #3d3d3d;
+}
+
+.infotext {
+  line-height: 1.5em;
+  max-width: 580px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.main-slogan {
+  font-size: 34px;
+  margin-bottom: 35px;
+  text-shadow: 0 1px 0 white;
+}
+
+.main-slogan strong {
+  font-style: italic;
+}
+
+#infos, #mailform {
+  float: left;
+  height: 130px;
+}
+
+#mailform {
+  width: 410px;
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
+#mailform input[type=submit] {
+  margin-top: 20px;
+  font-family: "Museo", Georgia, serif;
+  color: #3d3d3d;
+  float: right;
+  font-size: 20px;
+}
+
+#email {
+  font-size: 35px;
+  width: 370px;
+  font-family: 'Museo', Georgia, serif;
+  border: none;
+  border-bottom: 2px dotted #8f8f8f;
+  background: none;
+  color: #3d3d3d;
+}
+
+#email-label {
+  margin: 40px auto;
+}
+
+#email-label span {
+  text-indent: -9999px;
+  margin-right: 4px;
+  margin-top: 18px;
+  float: left;
+  width: 32px;
+  height: 22px;
+  background: no-repeat url('mail.png');
+}
+
+#footer {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #8f8f8f;
+}
+
+#footer a {
+  color: inherit;
+  text-decoration: none;
+  font-style: italic;
+}
+
+#footer a:hover {
+  color: #3d3d3d;
+}
+
+.flash_message {
+  font-size: 14px;
+  position: absolute;
+  margin-top: -70px;
+  width: 370px;
+  background: green;
+  padding: 5px 8px;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 2px #6C6;
+}
+
+#flash_error {
+  background-color: #FCC;
+  border: solid 2px #C66;
+}

@@ -8,6 +8,10 @@ class Schoolmailer < Sinatra::Base
   helpers Sinatra::Mailer
   helpers Sinatra::UrlForHelper
 
+  configure do
+    config_file "conf/settings.yml", "conf/#{environment}.settings.yml"
+  end
+
   set :environment, (ENV['RACK_ENV'] || 'development')
   # Naprawdę nie wiem, dlaczego Sinatra nie korzysta z domyślnych ustawień
   set :public, File.dirname(__FILE__) + '/public'
@@ -19,12 +23,6 @@ class Schoolmailer < Sinatra::Base
   require "models/email"
 
   DataMapper.finalize
-
-  # Conf
-  
-  configure do
-    config_file "conf/settings.yml", "conf/#{environment}.settings.yml"
-  end
 
   configure :production, :development do
     DataMapper.auto_upgrade!

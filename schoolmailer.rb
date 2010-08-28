@@ -66,11 +66,8 @@ class Schoolmailer < Sinatra::Base
 
       msgbody = <<EOF
 Cześć,\n
-\n
 Aby aktywować konto, kliknij na poniższy link.\n
-\n
 #{url_for("/emails/confirm/#{@email.address}/#{@email.confirmation_hash}", :full)}\n
-\n
 ----------------------------------------------\n
 Jeśli ten email to pomyłka, po prostu go zignoruj.
 EOF
@@ -104,9 +101,7 @@ EOF
         flash[:notice] = "Email został aktywowany."
         msgbody = <<EOF
 Hej,\n
-\n
 Twoje konto właśnie zostało aktywowane. Gdybyś jednak w przyszłości chciał/a zrezygnować z subskrypcji, po prostu wejdź pod poniższy adres.\n
-\n
 #{url_for("/emails/unsubscribe/#{@email.address}/#{@email.confirmation_hash}", :full)}
 EOF
         email :to => @email.address,

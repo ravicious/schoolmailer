@@ -17,7 +17,7 @@ class Schoolmailer < Sinatra::Base
   set :public, File.dirname(__FILE__) + '/public'
 
   DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/schoolmailer_#{environment}.sqlite3")
-  #DataMapper.setup(:default, "mysql://#{mysql_login}:#{mysql_pass}@localhost/schoolmailer_#{environment}")
+  #DataMapper.setup(:default, "postgres://#{database_login}:#{database_pass}@localhost/schoolmailer_#{environment}")
 
   # Models
   require "models/email"

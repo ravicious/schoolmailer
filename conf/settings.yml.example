@@ -1,4 +1,5 @@
 ---
-sendmail_path: /usr/sbin/sendmail -i
+email_user: 
+email_pass: 
 database_login: 
 database_pass: 

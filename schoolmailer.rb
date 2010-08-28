@@ -42,9 +42,14 @@ class Schoolmailer < Sinatra::Base
   end
 
   # Mailer
-  
-  Sinatra::Mailer.config = {:sendmail_path => sendmail_path}
-  Sinatra::Mailer.delivery_method = :sendmail
+
+  Sinatra::Mailer.config = {
+    :host => 'smtp.gmail.com',
+    :port => '587',
+    :user => email_user,
+    :pass => email_pass,
+    :auth => :plain
+  }
 
   # Routes
 

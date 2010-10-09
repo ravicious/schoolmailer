@@ -6,13 +6,18 @@ gem "dm-timestamps", "1.0.0"
 gem "dm-migrations", "1.0.0"
 gem "dm-sqlite-adapter", "1.0.0"
 #gem "dm-postgres-adapter", "1.0.0"
+gem "mail"
 
 group :sinatra do
   gem "sinatra"
-  gem "mailfactory"
   gem "haml"
-  gem "activesupport"
   gem "rack-flash"
+end
+
+group :scripts do
+  gem "mechanize"
+  gem "fakeweb"
+  gem "activesupport", "2.3.8"
 end
 
 group :test do

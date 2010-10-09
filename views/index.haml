@@ -1,48 +1,30 @@
 %html
   %head
     %meta{:"http-equiv" => "content-type", :content => "text/html; charset=utf-8"}
-    %title Schoolmailer
+    %title 2lo.niejest.be
     %link{:rel => "stylesheet", :href => url_for('/style.css'), :type => "text/css", :media => "screen", :charset => "utf-8"}
-    :plain
-      <script type="text/javascript" charset="utf-8">
-      /* Usuń text-shadow pod Windowsem */
-      if (navigator.appVersion.indexOf("Win")!=-1)
-        {
-          var headID = document.getElementsByTagName("head")[0];
-          var cssNode = document.createElement('link');
-          cssNode.type = 'text/css';
-          cssNode.rel = 'stylesheet';
-          cssNode.href = 'windows_to_gowno.css';
-          cssNode.media = 'screen';
-          headID.appendChild(cssNode);
-        }
-      </script>
+    %link{:rel => "shortcut icon", :href => "favicon.ico"}
 
   %body
+    :plain
+      <!--[if lt IE 9]><link href="infobar/infobar.css" rel=stylesheet>
+      <div id=infobar><a href=http://browsehappy.pl/infobar>
+      Internet Explorer nie potrafi poprawnie wyświetlić tej strony. Kliknij tutaj, aby dowiedzieć się więcej...
+      </a></div><div id=viewplot><script src=infobar.js></script><![endif]-->
     #wrapper
-      #paper
       - [:error, :notice].each do |flash_sym|
         - if flash[flash_sym]
           %div{:id => "flash_#{flash_sym.to_s}", :class => 'flash_message'}
             = flash[flash_sym]
-      %p.main-slogan
-        Nudzi Cię
-        %strong codzienne
-        sprawdzanie dziennika?
-      #infos
-        %p.infotext
-          Nie musisz tam w ogóle wchodzić. Podaj swój adres email, a&nbsp;codziennie po godzinie 16 dostaniesz informacje o&nbsp;<strong>zastępstwach</strong> oraz <strong>wybranym numerku</strong>.
-        %p{:style => "font-size: 20px;"}
-          <strong>Wygodnie</strong>, nieprawdaż?</p>
-
       %form{:action => url_for('/emails'), :method => 'post', :name => 'email', :id => "mailform"}
         %p
-          %label{:id => "email-label"}
+          Nie lubię <strong>trwonić czasu</strong> na błahostki, dlatego też chcę codziennie otrzymywać informacje o&nbsp;zastępstwach oraz o&nbsp;wylosowanym numerku na podany niżej adres e-mail.
+        #email-wrapper
+          %label#email-label
             %span Email
-            %input{:type => 'text', :name => 'email[address]', :id => 'email'}
-        %p
-          %input{:type => 'submit', :value => 'Wchodzę w to!'}
-      .clearer
+            %input{:type => 'text', :name => 'email[address]', :id => 'email'}>
+          #submit-button
+            %input{:type => 'submit', :value => 'Wchodzę w to!'}
       %p#footer
         magic by
         %a{:href => 'http://ravicio.us'} ravicious

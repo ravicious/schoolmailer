@@ -1,6 +1,0 @@
-/*
- * Dla gównianego windowsa muszę wyłączyć text-shadow, bo wygląda
- * pod nim OKROPNIE, nawet pod Win 7, ech.
- * */
-
-* {text-shadow: none !important}

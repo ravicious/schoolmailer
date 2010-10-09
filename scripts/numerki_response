@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl"><head><meta http-equiv="Content-Language" content="pl"/><meta http-equiv="content-type" content="text/html; CHARSET=iso-8859-2"/><meta name="Keywords" content="dziennik, szkoła, oceny" /><meta name="Description" content="internetowy dziennik ocen najlepszy" /><meta http-equiv="content-language" content="pl" /><meta http-equiv="Reply-To" content="kaczocha@wp.pl" /><link rel="shortcut icon" href="obrazy/dziennik.ico" /><link rel="stylesheet" href="skorki/008/styl.css" type="text/css"/>		
+		
+<script type="text/javascript">
+ // <![CDATA[
+ 
+ 
+  function UkryjOpcje(nr)
+{ 
+  var p="ukrywany"+nr;
+	
+  if (p.length < 1){return;}
+  document.getElementById(p).style.display = "none";
+	var p="minus"+nr;	
+	document.getElementById(p).style.display = "none";
+	var p="plus"+nr;
+	document.getElementById(p).style.display = "";
+	
+}
+
+function OdkryjOpcje(nr,ile)
+{
+  var p="ukrywany"+nr;
+	
+  if (p.length < 1){return;}
+  document.getElementById(p).style.display = "block";	
+	var p="minus"+nr;
+	document.getElementById(p).style.display = "";
+	var p="plus"+nr;
+	document.getElementById(p).style.display = "none";
+	for (i=1;i<=ile;i++)
+	{
+	  if (i!=nr){UkryjOpcje(i);}
+	}
+}
+ 
+  			// ]]>
+</script>
+ <script type="text/javascript" language="JavaScript">
+ function idzdo(adres) { window.location = adres;} 
+ </script> <title>Numerki</title><SCRIPT LANGUAGE="JavaScript">
+
+var timerID = null;
+var timerRunning = false;
+function stopclock (){
+if(timerRunning)
+clearTimeout(timerID);
+timerRunning = false;
+}
+function showtime () {
+var now = new Date();
+var hours = now.getHours();
+var minutes = now.getMinutes();
+var seconds = now.getSeconds()
+var timeValue = "" + ((hours >12) ? hours -0 :hours)
+if (timeValue == "0") timeValue = 12;
+timeValue += ((minutes < 10) ? ":0" : ":") + minutes
+timeValue += ((seconds < 10) ? ":0" : ":") + seconds
+
+document.getElementById('czas').innerHTML= timeValue;
+timerID = setTimeout("showtime()",1000);
+timerRunning = true;
+}
+function startclock() {
+stopclock();
+showtime();
+}
+
+</SCRIPT><script language="javascript" type="text/javascript">
+function zmieniaj(r,t,s)
+{ 	
+  obiekt= document.getElementById("losik"); 
+	obiekt.style.fontSize = r + "px";	
+	
+	obiekt.style.color="#007799";
+	if (r>300){s=-2;}	
+	if (r<292){s=2;t=500;}
+	
+	r=r+s;	
+  setTimeout("zmieniaj("+r+","+t+","+s+")");
+  return false;
+}
+</script></head><body  onLoad="startclock()"><center><table style="border-style:none;width:1px;margin:0px;" cellspacing="0" cellpadding="0" ><tr><td nowrap='nowrap' class='naglowek' style='text-align:center;padding:0px;margin:0px;font-family:tahoma;background:url(skorki/008/tlo0.gif);'><a href="powitanie.php?srodek=true;"><img src="obrazy/zamknij.gif" alt="zamknij" title="zamknij" border="0" /></a>&nbsp;<span style="font-family:tahoma,Arial,Verdana;">Numerki niepytane</span></td></tr></table><img src=obrazy/logo_male.gif border=0 width=160 height=50><p style="font-size:16px;"><b><i>Zasady losowania numerków</b></i></p><p style="font-size:13px;"><i>Numerek losowany jest na każdy następny dzień zajęć automatycznie przez pierwszego ucznia,<br />który zaloguje się na Dziennik Internetowy nie wcześniej niż o godzinie<b> 16<sup> <u>00</u></sup></b> poprzedniego dnia (wg czasu serwera) i uruchomi opcję <b>Numerki</b>.<br />
+
+Teraz jest godzina: &nbsp;&nbsp;&nbsp;<span id="czas" style="font-size:15px;font-weight:bold;border-style:none;width:80px;text-align:center;background: url(/skorki/skorki/008//tlo0.gif);" ></span><br /><u><b>Numerek na następny dzień nie zostanie wylosowany jeśli żaden uczeń nie spełni powyższego wymagania<br/>do godziny<big> 24 <sup><u>00</u></sup></big> poprzedniego dnia!</b></u><br /><br />Po wylosowaniu następuje automatyczne rozesłanie e-mail`i gratulacyjnych do uczniów posiadających szczęśliwy numer.</i></p><h1 style="font-size:32px;">piątek<small>, 2010-10-08</small></h1><span style="font-size:14px;">Numerek wylosowany przez: <u><b>Dawid Glinkowski</b></u></span><br /><table border=0 cellspacing=0 cellpadding=0 style='background: url(skorki/skorki/008//tlo0.gif);border-style:none;border-width:0px;'><tr><th style='width:800px;height:300px;background:url(skorki/skorki/008//tlo0.gif);border-style:none;border-right-width : 0px;'><div id="losik" style="font-size:256px;color:#007799;font-weight:bold;">17</div></th><tr></table><h2>Ostatnio wylosowane numerki</h2><table border=1 cellspacing=0 cellpadding=3><tr"><th>data</th><th>wylosował</th><th>numerek</th></tr><tr bgcolor=#ccd7ee><td style="font-size:13px;">2010-10-08, piątek</td><td style="font-size:13px;"><b>Dawid Glinkowski</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;">17</td></tr><tr bgcolor=#eeeeff><td style="font-size:13px;">2010-10-07, czwartek</td><td style="font-size:13px;"><b>Karolina Józefiak</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;">25</td></tr><tr bgcolor=#ccd7ee><td style="font-size:13px;">2010-10-06, środa</td><td style="font-size:13px;"><b>Jan Czajkowski</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;">20</td></tr><tr bgcolor=#eeeeff><td style="font-size:13px;">2010-10-05, wtorek</td><td style="font-size:13px;"><b>Patryk Matuszczak</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;">18</td></tr><tr bgcolor=#ccd7ee><td style="font-size:13px;">2010-10-04, poniedziałek</td><td style="font-size:13px;"><b>Marcin Nęcki</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;">16</td></tr><tr bgcolor=#eeeeff><td style="font-size:13px;">2010-10-01, piątek</td><td style="font-size:13px;"><b>Dawid Glinkowski</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;"> 7</td></tr><tr bgcolor=#ccd7ee><td style="font-size:13px;">2010-09-30, czwartek</td><td style="font-size:13px;"><b>Jakub Koczorowski</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;"> 1</td></tr><tr bgcolor=#eeeeff><td style="font-size:13px;">2010-09-29, środa</td><td style="font-size:13px;"><b>Patryk Matuszczak</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;">31</td></tr><tr bgcolor=#ccd7ee><td style="font-size:13px;">2010-09-28, wtorek</td><td style="font-size:13px;"><b>Marcin Nęcki</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;">22</td></tr><tr bgcolor=#eeeeff><td style="font-size:13px;">2010-09-27, poniedziałek</td><td style="font-size:13px;"><b>Tomasz Poprawa</b></td><td style="font-size:19px;color:#dd0000;text-align:center;font-weight:bold;"> 3</td></tr></table><br /><h2>Numerki wylosowane<br>oraz numerki wolne (oczekujące)</h2><table border=0 cellspacing=2 cellpadding=1 style='background: url(skorki/skorki/008//tlo0.gif);border-style:none;'><tr><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='1' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='2' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='3' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='4' style='width:32px;background-color:#ffffff;font-size:16px;font-weight:bold;text-align:center;border-style:none;color:#dd0000;'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='5' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='6' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td></tr><tr><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='7' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='8' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='9' style='width:32px;background-color:#ffffff;font-size:16px;font-weight:bold;text-align:center;border-style:none;color:#dd0000;'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='10' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='11' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='12' style='width:32px;background-color:#ffffff;font-size:16px;font-weight:bold;text-align:center;border-style:none;color:#dd0000;'></td></tr><tr><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='13' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='14' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='15' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='16' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='17' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='18' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td></tr><tr><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='19' style='width:32px;background-color:#ffffff;font-size:16px;font-weight:bold;text-align:center;border-style:none;color:#dd0000;'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='20' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='21' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='22' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='23' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='24' style='width:32px;background-color:#ffffff;font-size:16px;font-weight:bold;text-align:center;border-style:none;color:#dd0000;'></td></tr><tr><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='25' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='26' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='27' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='28' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='29' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='30' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td></tr><tr><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='31' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='32' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='33' style='width:32px;background-color:#ffffff;font-size:16px;font-weight:bold;text-align:center;border-style:none;color:#dd0000;'></td><td style="text-align:center;border-style:none;"><input type=text maxlength=2 disabled value='34' style='width:32px;font-size:16px;font-weight:bold;text-align:center;border-style:none;text-decoration:line-through;background:url(skorki/skorki/008//tlo0.gif)'></td></tr></table><br /><a href="dni_wolne.php" target=kalenarz>&nbsp; <span style="font-size:13px;font-weight:bold;">Kalendarz roku szkolnego</span>&nbsp; </a><br /><br /></body></html>	
+	
+
+
+

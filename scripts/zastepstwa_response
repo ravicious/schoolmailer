@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl"><head><meta http-equiv="Content-Language" content="pl"/><meta http-equiv="content-type" content="text/html; CHARSET=iso-8859-2"/><meta name="Keywords" content="dziennik, szkoła, oceny" /><meta name="Description" content="internetowy dziennik ocen najlepszy" /><meta http-equiv="content-language" content="pl" /><meta http-equiv="Reply-To" content="kaczocha@wp.pl" /><link rel="shortcut icon" href="obrazy/dziennik.ico" /><link rel="stylesheet" href="skorki/008/styl.css" type="text/css"/>		
+		
+<link rel="stylesheet" href="styl.css" type="text/css"/><script type="text/javascript">
+ // <![CDATA[
+ 
+ 
+  function UkryjOpcje(nr)
+{ 
+  var p="ukrywany"+nr;
+	
+  if (p.length < 1){return;}
+  document.getElementById(p).style.display = "none";
+	var p="minus"+nr;	
+	document.getElementById(p).style.display = "none";
+	var p="plus"+nr;
+	document.getElementById(p).style.display = "";
+	
+}
+
+function OdkryjOpcje(nr,ile)
+{
+  var p="ukrywany"+nr;
+	
+  if (p.length < 1){return;}
+  document.getElementById(p).style.display = "block";	
+	var p="minus"+nr;
+	document.getElementById(p).style.display = "";
+	var p="plus"+nr;
+	document.getElementById(p).style.display = "none";
+	for (i=1;i<=ile;i++)
+	{
+	  if (i!=nr){UkryjOpcje(i);}
+	}
+}
+ 
+  			// ]]>
+</script>
+ <script type="text/javascript" language="JavaScript">
+ function idzdo(adres) { window.location = adres;} 
+ </script> <title>Zastępstwa</title>
+<!-- TinyMCE -->
+<script language="javascript" src="js/tiny_mce/tiny_mce.js"></script>
+<!-- /TinyMCE --></head><body><center><table style="border-style:none;border-top-width:0px;border-left-width:0px;border-right-width:0px;width:100%;position:fixed;margin-top:0px;" cellspacing="0" cellpadding="0" ><tr><td nowrap='nowrap' class='naglowek' style='text-align:center;padding:0px;margin:0px;font-family:tahoma;background:url(skorki/008/tlo0.gif);'><a href="powitanie.php?srodek=true;"><img src="obrazy/zamknij.gif" alt="zamknij" title="zamknij" border="0" /></a>&nbsp;<span style="font-family:tahoma,Arial,Verdana;">Zastępstwa</span>&nbsp;<img src="obrazy/zastepstwa.gif" height="18" alt="" /></td></tr></table><br /><br /><span style="font-size:4px;"><br /></span><img src=obrazy/logo_male.gif border=0 width=160 height=50><br /><div id='content' style='text-align : left; background-color : white; padding:1%; width : 95%;font-size:14px;' ><p>&nbsp;</p>
+<p><span style="background-color: #ffff00;"><strong><span style="font-size: medium;">11<span style="text-decoration: underline;"> października 2010 r.(poniedziałek)</span></span></strong></span></p>
+
+<p><span style="font-size: medium;"><em>nauczyciele nieobecni:B.Nowicka</em></span></p>
+<p><strong><span style="font-size: medium;"><em>&nbsp;</em></span></strong></p>
+<p><strong><span style="font-size: medium;"><em>&nbsp;</em></span></strong></p>
+<p><strong><span style="font-size: medium;">1l.&nbsp;&nbsp;&nbsp;&nbsp; IIIg&nbsp;&nbsp;&nbsp; dziewczynki na 2 lekcję</span></strong></p>
+<p><strong><span style="font-size: medium;">2l.&nbsp;&nbsp;&nbsp;&nbsp; IId&nbsp;&nbsp;&nbsp;&nbsp; chłopcy na 3 lekcję</span></strong></p>
+<p><strong><span style="font-size: medium;">4l.&nbsp;&nbsp;&nbsp;&nbsp; IIe&nbsp;&nbsp;&nbsp;&nbsp; dziewczynki wf. (K.Florek)</span></strong></p>
+
+<p><strong><span style="font-size: medium;">5l.&nbsp;&nbsp;&nbsp;&nbsp; IIIe&nbsp;&nbsp;&nbsp; dziewczynki do domu</span></strong></p>
+<p><strong><span style="font-size: medium;">&nbsp;</span></strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div></center></body></html>
+

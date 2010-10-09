@@ -1,0 +1,42 @@
+HTTP/1.1 200 OK
+Date: Sat, 18 Sep 2010 11:20:08 GMT
+Server: Apache/2.0.54 (Debian GNU/Linux) PHP/5.2.4-0+tld0 with Suhosin-Patch mod_ssl/2.0.54 OpenSSL/0.9.7e
+X-Powered-By: PHP/5.2.4-0+tld0
+Set-Cookie: PHPSESSID=1363707bafb00025b45019b9ed5806ae; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Content-Length: 2710
+Content-Type: text/html
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl"><head><title>Dziennik Internetowy</title><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-2"/><meta name="Keywords" content="dziennik, szkoła, oceny"/><meta name="Description" content="internetowy dziennik ocen najlepszy"/><link rel="shortcut icon" href="obrazy/dziennik.ico"/><link rel="stylesheet" href="skorki/001/styl.css" type="text/css"/><script language="javascript" type="text/javascript">
+
+var przerwij = 0;
+
+function skaluj(r,t)
+{ 	
+ 
+ ob = document.getElementById("obraz");
+ 
+ 
+ if ((r>0) && (ob.width>600)){return false;}
+	 
+ if ((r<0) && (ob.width<100)){r=-0.08*r;}	
+	
+ clearTimeout (przerwij);
+ 
+ 
+ //rt=ob.width/525;
+ //tyt.style.fontSize = rt + "px"; 
+ 
+ ob.width=ob.width+r; 
+ t=t+0.1;
+ 
+ 
+ przerwij=setTimeout("skaluj("+r+","+t+")",t);
+ 
+ return false;
+}
+
+</script></head><body style="text-align:center;" ><p><img src="obrazy/logo_czolowe.gif" id="obraz" width=600 border=0style="border-style:solid;border-width:1px;border-color:#777777;filter: alpha(opacity=75); moz-opacity: 0.75; opacity: 0.75;cursor:pointer;"  alt="Dziennik" /></p><script language="javascript" type="text/javascript">skaluj(-75,-1);</script><p><br /><b>Nauczyciele</b>,<b> uczniowie</b> oraz <b>rodzice uczniów</b> tej szkoły mogą uzyskać login i hasło<br />od dyrektora (nauczyciel) lub wychowawcy (rodzic i uczeń).</p><p>&copy; copyright <a href="mailto:kaczocha@wp.pl">S. Kaczocha</a>, Ostrów Wielkopolski 2005-2010</p><p style="color:#999999;font-size:14px;font-weight:bold;">DO KOŃCA ROKU SZKOLNEGO: <big><big>280</big></big> DNI</p>	
+<center><br /><span style="font-size:14px;font-weight:bold;color:black;">Logowanie:</span><form method="post" action="index.php">Login: <input type="text" class="edycja" name="login" maxlength="30" style="border-style:ridge;padding:0px;font-size:12px;width:120px;border-width:1px;height:16px;background-color:#ffffdd;"/>&nbsp; Hasło: <input type="password" class="edycja" name="haslo" maxlength="30" style="border-style:ridge;padding:0px;font-size:12px;width:120px;border-width:1px;height:16px;background-color:#ffffdd;"/>&nbsp; <input type="submit" value="zaloguj się" style="padding:0px;font-size:12px;height:21px;width:150px;font-weight:bold;background-color:#aaaaaa;"/></form><p><img src="obrazy/oczekiwanie.gif" alt="zaloguj"/></p>Do przeglądania tej witryny używaj przeglądarki <a href="http://www.mozilla-europe.org/pl/firefox"  target=blank><b><big>Firefox</big></b></a> (zalecany) lub <b>Internet Explorer 7</b> i nowszy.</center></body></html>

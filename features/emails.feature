@@ -1,3 +1,4 @@
+# encoding: utf-8
 Feature: Subscribing to newsletter
   In order to get news daily
   As a guest

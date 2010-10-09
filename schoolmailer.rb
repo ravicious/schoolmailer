@@ -1,11 +1,12 @@
-%w(haml digest dm-core dm-validations dm-timestamps dm-migrations rack-flash lib/mailer lib/smtp-tls lib/config_file lib/url_for).each {|lib| require lib}
+# encoding: utf-8
+%w(haml digest dm-core dm-validations dm-timestamps dm-migrations rack-flash mail).each {|lib| require lib}
+%w(lib/config_file lib/url_for).each {|lib| require_relative lib}
 
 class Schoolmailer < Sinatra::Base
 
   enable :sessions
   use Rack::Flash
   register Sinatra::ConfigFile
-  helpers Sinatra::Mailer
   helpers Sinatra::UrlForHelper
 
   configure do
@@ -13,6 +14,7 @@ class Schoolmailer < Sinatra::Base
   end
 
   set :environment, (ENV['RACK_ENV'] || 'development')
+
   # Naprawdę nie wiem, dlaczego Sinatra nie korzysta z domyślnych ustawień
   set :public, File.dirname(__FILE__) + '/public'
 
@@ -20,7 +22,8 @@ class Schoolmailer < Sinatra::Base
   #DataMapper.setup(:default, "postgres://#{database_login}:#{database_pass}@localhost/schoolmailer_#{environment}")
 
   # Models
-  require "models/email"
+  require_relative "models/email"
+  require_relative "models/replacement"
 
   DataMapper.finalize
 
@@ -32,24 +35,30 @@ class Schoolmailer < Sinatra::Base
     DataMapper::Logger.new($stdout, :debug)
   end
 
-  configure :development, :test do
-    set :sendmail_path, "#{Dir.pwd}/lib/fake-mailer"
-  end
-
   configure :test do
     # Czyść bazę przy każdym uruchomieniu w środowisku testowym
     DataMapper.auto_migrate!
   end
 
   # Mailer
-
-  Sinatra::Mailer.config = {
-    :host => 'smtp.gmail.com',
-    :port => '587',
-    :user => email_user,
-    :pass => email_pass,
-    :auth => :plain
-  }
+  
+  if %w(development test).include? Schoolmailer.environment
+    Mail.defaults do
+      delivery_method :test
+    end
+  else
+    Mail.defaults do
+      delivery_method :smtp, {
+        :address => "smtp.gmail.com",
+        :port => 587,
+        :domain => 'local.localhost',
+        :user_name => ::Schoolmailer.email_user,
+        :password => ::Schoolmailer.email_pass,
+        :authentication => 'plain',
+        :enable_starttls_auto => true
+      }
+    end
+  end
 
   # Routes
 
@@ -71,10 +80,12 @@ Aby aktywować konto, kliknij na poniższy link.\n
 ----------------------------------------------\n
 Jeśli ten email to pomyłka, po prostu go zignoruj.
 EOF
-      email :to => @email.address,
-            :from => "ravicious@gmail.com",
-            :subject => "Aktywacja konta",
-            :text => msgbody
+      mail = Mail.new
+      mail.to @email.address
+      mail.from "ravicious@gmail.com"
+      mail.subject "Aktywacja konta"
+      mail.body msgbody
+      mail.deliver!
 
     else
 
@@ -104,10 +115,12 @@ Hej,\n
 Twoje konto właśnie zostało aktywowane. Gdybyś jednak w przyszłości chciał/a zrezygnować z subskrypcji, po prostu wejdź pod poniższy adres.\n
 #{url_for("/emails/unsubscribe/#{@email.address}/#{@email.confirmation_hash}", :full)}
 EOF
-        email :to => @email.address,
-              :from => "ravicious@gmail.com",
-              :subject => "Aktywacja konta powiodła się!",
-              :text => msgbody
+        mail = Mail.new
+        mail.to @email.address
+        mail.from "ravicious@gmail.com"
+        mail.subject "Aktywacja konta powiodła się!"
+        mail.body msgbody
+        mail.deliver!
 
       else
         flash[:error] = "Klucz aktywujący nie pasuje do Twojego maila. Być może Twoje konto jest już aktywne."

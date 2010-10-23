@@ -49,7 +49,7 @@ class Schoolmailer < Sinatra::Base
   else
     Mail.defaults do
       delivery_method :smtp, {
-        :address => "smtp.gmail.com",
+        :address => "smtp.sendgrid.net",
         :port => 587,
         :domain => 'local.localhost',
         :user_name => ::Schoolmailer.email_user,

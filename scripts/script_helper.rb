@@ -10,8 +10,8 @@ Bundler.setup(:default, :scripts)
 require_relative "../lib/simple_config_file"
 require_relative "../lib/string/remove_empty_spaces"
 
-load_config 'conf/settings.yml'
-load_config "conf/#{ENV['RACK_ENV']}.settings.yml"
+load_config 'config/settings.yml'
+load_config "config/#{ENV['RACK_ENV']}.settings.yml"
 
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/schoolmailer_#{ENV['RACK_ENV']}.sqlite3")
 # Config dla postgresa

@@ -10,7 +10,7 @@ class Schoolmailer < Sinatra::Base
   helpers Sinatra::UrlForHelper
 
   configure do
-    config_file "conf/settings.yml", "conf/#{environment}.settings.yml"
+    config_file "config/settings.yml", "config/#{environment}.settings.yml"
   end
 
   set :environment, (ENV['RACK_ENV'] || 'development')

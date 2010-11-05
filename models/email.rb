@@ -4,6 +4,7 @@ class Email
   property :address, String, :key => true, :format => :email_address
   property :confirmation_hash, String, :writer => :protected
   property :confirmed, Boolean, :default => false, :writer => :protected
+  property :queued, Boolean, :default => false, :writer => :protected
 
   before :create, :generate_confirmation_hash
   validates_uniqueness_of :address
@@ -24,6 +25,10 @@ class Email
     else
       false
     end
+  end
+
+  def move_to_queue
+    attribute_set(:queued, true)
   end
 
   def unsubscribe(submitted_hash)

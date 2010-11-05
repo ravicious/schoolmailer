@@ -7,6 +7,8 @@ gem "dm-migrations", "1.0.0"
 gem "dm-sqlite-adapter", "1.0.0"
 #gem "dm-postgres-adapter", "1.0.0"
 gem "mail"
+gem "rest-client"
+gem "json"
 
 group :sinatra do
   gem "sinatra"
@@ -23,5 +25,8 @@ end
 group :test do
   gem "cucumber"
   gem "capybara"
-  gem "rspec", :require => 'spec'
+  gem "rspec"
+  gem "rack-test"
+  gem "test-unit"
+  gem "capybara"
 end

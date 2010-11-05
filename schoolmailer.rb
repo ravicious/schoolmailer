@@ -1,6 +1,6 @@
 # encoding: utf-8
-%w(haml digest dm-core dm-validations dm-timestamps dm-migrations rack-flash mail).each {|lib| require lib}
-%w(lib/config_file lib/url_for).each {|lib| require_relative lib}
+%w(haml digest dm-core dm-validations dm-timestamps dm-migrations rest_client rack-flash mail).each {|lib| require lib}
+%w(lib/config_file lib/url_for lib/sendgrid).each {|lib| require_relative lib}
 
 class Schoolmailer < Sinatra::Base
 
@@ -14,6 +14,22 @@ class Schoolmailer < Sinatra::Base
   end
 
   set :environment, (ENV['RACK_ENV'] || 'development')
+  set :sendgrid, SendGrid.new(sendgrid_user, sendgrid_pass)
+
+  # Sprawdza, czy na SendGridzie pozostała wystarczająca liczba kredytów na wysyłane maile
+  def self.enough_of_free_credits?
+    # Sprawdzaj pozostałe kredyty tylko na produkcji
+    if %w(test development).include? environment
+      true
+    else
+      # Na liczbę wolnych kredytów w SendGridzie, które są potrzebne, składają się:
+      #   * liczba zarejestrowanych userów z aktywowanymi mailami
+      #   * jeden adres mailowy, na który idzie codzienny mailing (ten, którego nie ma w ukrytej kopii)
+      #   * jeden mail, który będzie zawierał informację o potwierdzeniu aktywacji konta
+      required_number_of_tickets = Email.count(:confirmed => true) + 1 + 1
+      sendgrid.enough_of_free_credits?(required_number_of_tickets)
+    end
+  end
 
   # Naprawdę nie wiem, dlaczego Sinatra nie korzysta z domyślnych ustawień
   set :public, File.dirname(__FILE__) + '/public'
@@ -71,21 +87,27 @@ class Schoolmailer < Sinatra::Base
     @email =  Email.new(params[:email])
 
     if @email.save
-      flash[:notice] = "Mail dodany do bazy! Instrukcje dotyczące aktywacji właśnie wylądowały w Twojej skrzynce."
+      if Schoolmailer.enough_of_free_credits?
+        flash[:notice] = "Mail dodany do bazy! Instrukcje dotyczące aktywacji właśnie wylądowały w Twojej skrzynce."
 
-      msgbody = <<EOF
+        msgbody = <<EOF
 Cześć,\n
 Aby aktywować konto, kliknij na poniższy link.\n
 #{url_for("/emails/confirm/#{@email.address}/#{@email.confirmation_hash}", :full)}\n
 ----------------------------------------------\n
 Jeśli ten email to pomyłka, po prostu go zignoruj.
 EOF
-      mail = Mail.new
-      mail.to @email.address
-      mail.from "ravicious@gmail.com"
-      mail.subject "Aktywacja konta"
-      mail.body msgbody
-      mail.deliver!
+        mail = Mail.new
+        mail.to @email.address
+        mail.from "ravicious@gmail.com"
+        mail.subject "Aktywacja konta"
+        mail.body msgbody
+        mail.deliver!
+      else
+        @email.move_to_queue
+        @email.save
+        flash[:notice] = "Mail został dodany do bazy, aczkolwiek musisz poczekać jeszcze maksymalnie 24 godziny na maila z prośbą o aktywację konta."
+      end
 
     else
 

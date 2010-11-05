@@ -13,6 +13,7 @@ describe "Schoolmailer" do
     visit '/'
     fill_in 'email', :with => 'enoughof@freecredits.pl'
     click_button "Wchodzę w to!"
-    page.should have_content("24 godziny")
+    page.should have_content("przepraszamy, ale nie jesteśmy w stanie dzisiaj Ciebie zarejestrować.")
+    Email.count.should == 0
   end
 end

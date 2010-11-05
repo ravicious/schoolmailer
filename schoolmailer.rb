@@ -86,8 +86,8 @@ class Schoolmailer < Sinatra::Base
   post '/emails' do
     @email =  Email.new(params[:email])
 
-    if @email.save
-      if Schoolmailer.enough_of_free_credits?
+    if Schoolmailer.enough_of_free_credits?
+      if @email.save
         flash[:notice] = "Mail dodany do bazy! Instrukcje dotyczące aktywacji właśnie wylądowały w Twojej skrzynce."
 
         msgbody = <<EOF
@@ -104,21 +104,18 @@ EOF
         mail.body msgbody
         mail.deliver!
       else
-        @email.move_to_queue
-        @email.save
-        flash[:notice] = "Mail został dodany do bazy, aczkolwiek musisz poczekać jeszcze maksymalnie 24 godziny na maila z prośbą o aktywację konta."
+
+        # Nie chce mi się bawić w tłumaczenie error messages
+        case @email.errors.on(:address).first
+        when /already taken/
+          flash[:error] = "Podany email już istnieje w bazie!"
+        when /invalid format/
+          flash[:error] = "Podany email jest nieprawidłowy!"
+        end
       end
 
     else
-
-      # Nie chce mi się bawić w tłumaczenie error messages
-      case @email.errors.on(:address).first
-      when /already taken/
-        flash[:error] = "Podany email już istnieje w bazie!"
-      when /invalid format/
-        flash[:error] = "Podany email jest nieprawidłowy!"
-      end
-
+      flash[:error] = "Ups, przepraszamy, ale nie jesteśmy w stanie dzisiaj Ciebie zarejestrować. Nasz goniec pocztowy nie wyrabia. Spróbuj jutro."
     end
 
     redirect url_for('/')

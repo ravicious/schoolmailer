@@ -1,9 +1,11 @@
 ---
 email_user: 
 email_pass: 
-database_login: 
-database_pass: 
 dziennik_user: 
 dziennik_pass: 
 sendgrid_user: 
 sendgrid_pass: 
+database_config:
+  :name: 
+  :login: 
+  :password: 

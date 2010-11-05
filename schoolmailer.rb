@@ -1,6 +1,6 @@
 # encoding: utf-8
 %w(haml digest dm-core dm-validations dm-timestamps dm-migrations rest_client rack-flash mail).each {|lib| require lib}
-%w(lib/config_file lib/url_for lib/sendgrid).each {|lib| require_relative lib}
+%w(lib/config_file lib/simple_config_file lib/url_for lib/sendgrid).each {|lib| require_relative lib}
 
 class Schoolmailer < Sinatra::Base
 
@@ -8,6 +8,7 @@ class Schoolmailer < Sinatra::Base
   use Rack::Flash
   register Sinatra::ConfigFile
   helpers Sinatra::UrlForHelper
+  register SimpleConfigFile
 
   configure do
     config_file "config/settings.yml", "config/#{environment}.settings.yml"
@@ -34,8 +35,8 @@ class Schoolmailer < Sinatra::Base
   # Naprawdę nie wiem, dlaczego Sinatra nie korzysta z domyślnych ustawień
   set :public, File.dirname(__FILE__) + '/public'
 
-  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/schoolmailer_#{environment}.sqlite3")
-  #DataMapper.setup(:default, "postgres://#{database_login}:#{database_pass}@localhost/schoolmailer_#{environment}")
+  # lib/simple_config_file.rb
+  DataMapper.setup(:default, datamapper_database_config(database_config, environment, Dir.pwd) )
 
   # Models
   require_relative "models/email"

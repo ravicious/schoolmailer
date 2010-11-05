@@ -14,10 +14,7 @@ include SimpleConfigFile
 load_config 'config/settings.yml'
 load_config "config/#{ENV['RACK_ENV']}.settings.yml"
 
-#DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/db/schoolmailer_#{ENV['RACK_ENV']}.sqlite3")
 DataMapper.setup(:default, datamapper_database_config($config['database_config'], ENV['RACK_ENV'], Dir.pwd) )
-# Config dla postgresa
-#DataMapper.setup(:default, "postgres://#{$config['database_login']}:#{$config['database_pass']}@localhost/schoolmailer_#{ENV['RACK_ENV']}")
 
 %w(email replacement drawn_number).each do |model|
   require File.join(File.dirname(File.expand_path(__FILE__)), '..', 'models', model)

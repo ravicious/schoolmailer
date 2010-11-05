@@ -26,8 +26,8 @@ class Schoolmailer < Sinatra::Base
       # Na liczbę wolnych kredytów w SendGridzie, które są potrzebne, składają się:
       #   * liczba zarejestrowanych userów z aktywowanymi mailami
       #   * jeden adres mailowy, na który idzie codzienny mailing (ten, którego nie ma w ukrytej kopii)
-      #   * jeden mail, który będzie zawierał informację o potwierdzeniu aktywacji konta
-      required_number_of_tickets = Email.count(:confirmed => true) + 1 + 1
+      #   * dwa maile z prośbą o aktywację i potwierdzający aktywację
+      required_number_of_tickets = Email.count(:confirmed => true) + 1 + 2
       sendgrid.enough_of_free_credits?(required_number_of_tickets)
     end
   end

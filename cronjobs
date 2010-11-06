@@ -1,3 +1,6 @@
+RACK_ENV=production
 # Mógłbym użyć whenever, ale mi się nie chce, poza tym ten gem chyba nie spełnia moich wymagań
-10 16 * 9,10,11,12,1,2,3,4,5,6 0-4 cd /home/rav/webapps/schoolmailer && RACK_ENV=production ruby /home/rav/webapps/schoolmailer/scripts/scrapper.rb
-11 16 * 9,10,11,12,1,2,3,4,5,6 0-4 cd /home/rav/webapps/schoolmailer && RACK_ENV=production ruby /home/rav/webapps/schoolmailer/scripts/sender.rb
+# A także zastosowałem SUPER hack na ominięcie problemów z rvm
+# m h  dom mon dow   command
+10 16 * 9,10,11,12,1,2,3,4,5,6 0,1,2,3,4 cd /home/rav/webapps/schoolmailer && /home/rav/.rvm/bin/rvm 1.9.2, /home/rav/webapps/schoolmailer/scripts/scrapper.rb
+11 16 * 9,10,11,12,1,2,3,4,5,6 0,1,2,3,4 cd /home/rav/webapps/schoolmailer && /home/rav/.rvm/bin/rvm 1.9.2, /home/rav/webapps/schoolmailer/scripts/sender.rb

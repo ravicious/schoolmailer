@@ -100,7 +100,7 @@ Jeśli ten email to pomyłka, po prostu go zignoruj.
 EOF
         mail = Mail.new
         mail.to @email.address
-        mail.from "ravicious@gmail.com"
+        mail.from "2lo.niejest.be"
         mail.subject "Aktywacja konta"
         mail.body msgbody
         mail.deliver!
@@ -137,7 +137,7 @@ Twoje konto właśnie zostało aktywowane. Gdybyś jednak w przyszłości chcia�
 EOF
         mail = Mail.new
         mail.to @email.address
-        mail.from "ravicious@gmail.com"
+        mail.from "2lo.niejest.be"
         mail.subject "Aktywacja konta powiodła się!"
         mail.body msgbody
         mail.deliver!
